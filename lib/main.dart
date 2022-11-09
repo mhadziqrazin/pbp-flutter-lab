@@ -85,15 +85,19 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: FloatingActionButton(
-                onPressed: (_counter != 0) ? _decrementCounter : null,
-                tooltip: 'Decrement',
-                backgroundColor: (_counter != 0) ? Colors.blue : Colors.grey,
-                child: const Icon(Icons.remove),
+            Visibility(
+              visible: (_counter != 0) ? true : false,
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: FloatingActionButton(
+                  onPressed: (_counter != 0) ? _decrementCounter : null,
+                  tooltip: 'Decrement',
+                  backgroundColor: Colors.blue,
+                  child: const Icon(Icons.remove),
+                ),
               ),
             ),
+
 
             Align(
               alignment: Alignment.bottomRight,
