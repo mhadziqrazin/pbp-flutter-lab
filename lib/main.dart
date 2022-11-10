@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'PBP Tugas 7'),
+      home: const MyHomePage(title: 'Program Counter'),
     );
   }
 }
@@ -87,26 +87,18 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Visibility(
               visible: (_counter != 0) ? true : false,
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: FloatingActionButton(
-                  onPressed: (_counter != 0) ? _decrementCounter : null,
-                  tooltip: 'Decrement',
-                  backgroundColor: Colors.blue,
-                  child: const Icon(Icons.remove),
-                ),
+              child: FloatingActionButton(
+                onPressed: (_counter != 0) ? _decrementCounter : null,
+                tooltip: 'Decrement',
+                child: const Icon(Icons.remove),
               ),
             ),
 
-
-            Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                onPressed: _incrementCounter,
-                tooltip: 'Increment',
-                child: const Icon(Icons.add),
-              ),
-            )
+            FloatingActionButton(
+              onPressed: _incrementCounter,
+              tooltip: 'Increment',
+              child: const Icon(Icons.add),
+            ),
           ],
         ),
       )
