@@ -32,27 +32,33 @@ Adalah _widget_ yang _state_-nya dapat berubah-ubah ketika aplikasi berjalan, ol
 
 # **📱 Widget apa saja yang dipakai di proyek ini dan penjelasannya**
 
-1. `Scaffold`: Memiliki fungsionalitas dasar untuk MaterialApp seperti AppBar, FloatingActionButton, dll.
+1. `MaterialApp`: Menyediakan banyak `tools` atau `theme` untuk aplikasi.
 
-2. `AppBar`: Biasanya ada di paling atas yang menampilkan _title_ aplikasi, _toolbar_, _action buttons_, dll.
+2. `ThemeData`: Mengatur tema untuk keseluruhan aplikasi.
 
-3. `Center`: Memposisikan _child widget_-nya agar berada di tengah layar.
+3. `MyHomePage`: Menampilkan halaman utama aplikasi kita.
 
-4. `Column`: Memposisikan _child widget_-nya agar tersusun secara vertikal (kolom).
+4. `Scaffold`: Memiliki fungsionalitas dasar untuk MaterialApp seperti AppBar, FloatingActionButton, dll.
 
-5. `Text`: Menampilkan _string_ teks.
+5. `AppBar`: Biasanya ada di paling atas yang menampilkan _title_ aplikasi, _toolbar_, _action buttons_, dll.
 
-6. `TextStyle`: Mengatur _styling_ dari `Text`.
+6. `Center`: Memposisikan _child widget_-nya agar berada di tengah layar.
 
-7. `Padding`: Memberikan jarak antara _content_ dengan batas _container_.
+7. `Column`: Memposisikan _child widget_-nya agar tersusun secara vertikal (kolom).
 
-8. `Row`: Memposisikan _child widget_-nya agar tersusun secara horizontal (baris).
+8. `Text`: Menampilkan _string_ teks.
 
-9. `Visibility`: Mengatur apakah _child widget_-nya nampak atau tidak.
+9. `TextStyle`: Mengatur _styling_ dari `Text`.
 
-10. `FloatingActionButton`: _Button_ yang memiliki suatu _action_ (fungsi) yang tampil di atas _widget_ lainnya.
+10. `Padding`: Memberikan jarak antara _content_ dengan batas _container_.
 
-11. `Icon`: Menambahkan gambar ikon pada suatu _widget_.
+11. `Row`: Memposisikan _child widget_-nya agar tersusun secara horizontal (baris).
+
+12. `Visibility`: Mengatur apakah _child widget_-nya nampak atau tidak.
+
+13. `FloatingActionButton`: _Button_ yang memiliki suatu _action_ (fungsi) yang tampil di atas _widget_ lainnya.
+
+14. `Icon`: Menambahkan gambar ikon pada suatu _widget_.
 <br>
 <br>
 
