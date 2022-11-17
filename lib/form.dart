@@ -1,13 +1,15 @@
 import 'package:counter_7/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 List<Widget> listBudget = [];
 class Budget extends StatelessWidget {
   String judul;
   int nominal;
+  String tanggal;
   String jenis;
-  Budget({super.key, required this.judul, required this.nominal, required this.jenis});
+  Budget({super.key, required this.judul, required this.nominal, required this.tanggal, required this.jenis});
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,12 @@ class Budget extends StatelessWidget {
                 ),
               ),
               Text(
+                tanggal,
+                style: const TextStyle(
+                  fontSize: 12,
+                ),
+              ),
+              Text(
                 jenis,
                 style: const TextStyle(
                   fontSize: 12,
@@ -72,9 +80,15 @@ class _MyFormPageState extends State<MyFormPage> {
   final _formKey = GlobalKey<FormState>();
   String _judul = "";
   int _nominal = 0;
+  TextEditingController dateinput = TextEditingController();
   String? jenisBudget;
   List<String> listJenisBudget = ['Pemasukan', 'Pengeluaran'];
 
+  @override
+  void initState() {
+    dateinput.text = "";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,6 +104,7 @@ class _MyFormPageState extends State<MyFormPage> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
+              // input judul
               Padding(
                 // Menggunakan padding sebesar 8 pixels
                 padding: const EdgeInsets.all(8.0),
@@ -122,6 +137,7 @@ class _MyFormPageState extends State<MyFormPage> {
                   },
                 ),
               ),
+              // input nominal
               Padding(
                 // Menggunakan padding sebesar 8 pixels
                 padding: const EdgeInsets.all(8.0),
@@ -159,6 +175,39 @@ class _MyFormPageState extends State<MyFormPage> {
                   },
                 ),
               ),
+              // input date
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: dateinput,
+                  decoration: const InputDecoration(
+                      icon: Icon(Icons.calendar_today),
+                      labelText: "Select Date"
+                  ),
+                  readOnly: true,
+                  onTap: () async {
+                    DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2101)
+                    );
+                    if (pickedDate != null) {
+                      setState(() {
+                        dateinput.text = DateFormat('dd-MM-yyyy').format(pickedDate);
+                      });
+                    }
+                  },
+                  // Validator sebagai validasi form
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Tanggal tidak boleh kosong!';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              // input jenis
               Padding(
                 // Menggunakan padding sebesar 8 pixels
                 padding: const EdgeInsets.all(8.0),
@@ -185,6 +234,7 @@ class _MyFormPageState extends State<MyFormPage> {
                   },
                 ),
               ),
+              // button simpan
               Expanded(
                 child: Align(
                   alignment: FractionalOffset.bottomCenter,
@@ -194,7 +244,7 @@ class _MyFormPageState extends State<MyFormPage> {
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        listBudget.add(Budget(judul: _judul, nominal: _nominal, jenis: jenisBudget!));
+                        listBudget.add(Budget(judul: _judul, nominal: _nominal, tanggal: dateinput.text, jenis: jenisBudget!));
                         showDialog(
                           context: context,
                           builder: (context) {
