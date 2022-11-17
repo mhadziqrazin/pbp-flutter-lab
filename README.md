@@ -1,3 +1,110 @@
+# **PBP Tugas 8**
+
+## **Nama**&emsp;: Muhammad Hadziq Razin
+## **NPM** &nbsp;&emsp;: 2106707076
+## **Kelas** &emsp;: D
+
+#
+
+<br>
+
+# **📱 `Navigator.push` dan `Navigator.pushReplacement`**
+
+**`Navigator.push`**
+
+Menambahkan suatu halaman baru ke dalam _stack_ halaman yang diatur oleh _widget_ Navigator.
+<br>
+<br>
+
+**`Navigator.pushReplacement`**
+
+Mengganti halaman saat ini (_top of stack_) dengan suatu halaman baru.
+<br>
+<br>
+
+
+![page-transition-stack2 drawio](https://user-images.githubusercontent.com/88391977/202354670-196e8c55-4b8b-427c-86ee-d84fc6f5aa1d.png)
+
+sumber gambar: https://www.technicalfeeder.com/2021/11/flutter-page-transition/
+<br>
+<br>
+
+
+# **📱 Widget apa saja yang dipakai di proyek ini dan penjelasannya**
+
+Sama dengan tugas 7, ditambah beberapa widget lain yakni:
+1. `Budget`: Objek _card_ untuk ditampilkan yang menyimpan data _input_ dari _user_.
+
+2. `MyFormPage`: halaman yang menampilkan form untuk _user_ meng-_input_ data.
+
+3. `TextFormField`: Tempat _input_ yang _value_-nya berupa `String`.
+
+4. `DropDownButtonFormField`: _Button_ untuk menampilkan pilihan _dropdown_.
+
+5. `TextButton`: _Button_ berupa teks yang bisa diatur _behaviour_-nya ketika ditekan.
+
+6. `Drawer` _Widget_ untuk menyembunyikan _tools_-_tools_ layaknya sebuah laci.
+
+7. `Navigator`: _Widget_ untuk menavigasi halaman aplikasi.
+
+8. `DrawerTugas`: _Drawer_ sesuai ketentuan soal yang saya buat agar bisa dipakai dengan mudah di halaman-halaman aplikasi.
+
+9. `Expanded`: Mengisi baris atau kolom yang kosong.
+
+10. `ListTile`: Menampung _widget_ dalam sebuah list.
+<br>
+<br>
+
+# **📱 Jenis-Jenis Event di Flutter**
+
+1. `onEnter`
+2. `onExit`
+3. `onHover`
+4. `onPressed`
+5. `onSaved`
+6. `onChanged`
+<br>
+<br>
+
+# **📱 Cara Navigator dalam mengganti "Halaman" pada Flutter**
+
+Menggunakan _stack_ sebagai tempat menyimpan halaman. Halaman baru yang ditambahkan bisa dengan menambah tumpukan _stack_ atau mengganti _top of stack_ . Jika ingin ke halaman lama bisa dengan pop() _stack_.
+<br>
+<br>
+
+# **📱 Cara Mengimplementasikan Langkah-Langkah Pengerjaan Tugas 8**
+
+**✅ Menambahkan drawer/hamburger menu pada app yang telah dibuat sebeumnya**
+
+Membuat file beranama `drawer.dart` kemudian menggunakannya dengan cara berikut:
+```
+return scaffold(
+    ...
+    drawer: const DrawerTugas(),
+    ...
+)
+```
+<br>
+
+**✅  Menambahkan tiga tombol navigasi pada drawer/hamburger**
+
+Dengan cara menggunakan _widget_ ListTile seperti pada file `drawer.dart`.
+<br>
+
+**✅ Menambahkan halaman form**
+
+Membuat file `form.dart` kemudian mengisinya dengan _widget_-_widget_ Input Field sesuai yang diinginkan.
+<br>
+
+**✅ Menambahkan halaman data budget**
+
+Menampilkan List Widget yang ada pada `form.dart` dalam sebuah _widget_ ListView.
+
+**✅ Bonus: Menambahkan Date Picker**<br>
+
+Menambahkan TextFormField yang berisi date input menggunakan dependencies `intl: ^0.17.0`. Cara penggunaannya saya dapat dari website ini: https://www.fluttercampus.com/guide/39/how-to-show-date-picker-on-textfield-tap-and-get-formatted-date/#dart-code-to-show-date-picker-in-flutter .
+<br>
+
 # **PBP Tugas 7**
 
 ## **Nama**&emsp;: Muhammad Hadziq Razin
