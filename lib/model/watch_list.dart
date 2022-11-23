@@ -20,13 +20,11 @@ class WatchList {
   Fields fields;
 
   factory WatchList.fromJson(Map<String, dynamic> json) => WatchList(
-    // model: modelValues.map[json["model"]],
     pk: json["pk"],
     fields: Fields.fromJson(json["fields"]),
   );
 
   Map<String, dynamic> toJson() => {
-    // "model": modelValues.reverse[model],
     "pk": pk,
     "fields": fields.toJson(),
   };

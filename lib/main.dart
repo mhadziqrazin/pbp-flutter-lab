@@ -5,8 +5,15 @@ void main() {
   runApp(const MyApp());
 }
 
+// variables for color theme
+const Color blackPrimary = Color(0xff121212);
+const Color blackSecondary = Color(0x11ffffff);
+const Color redPrimary = Color(0xffff4848);
+const Color whitePrimary = Color(0xddffffff);
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
 
   // This widget is the root of your application.
   @override
@@ -15,6 +22,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          color: Colors.redAccent
+        )
       ),
       home: const MyHomePage(),
     );
