@@ -1,5 +1,5 @@
 import 'package:counter_7/main.dart';
-import 'package:counter_7/page/drawer.dart';
+import 'package:counter_7/components/drawer.dart';
 import 'package:flutter/material.dart';
 
 class MyDetailPage extends StatefulWidget {
@@ -148,7 +148,7 @@ class _MyDetailPageState extends State<MyDetailPage> {
                   // review text
                   Container(
                     alignment: Alignment.centerLeft,
-                    margin: const EdgeInsets.only(left: 30),
+                    margin: const EdgeInsets.only(left: 15),
                     child: Text(
                       widget.review,
                       style: TextStyle(
