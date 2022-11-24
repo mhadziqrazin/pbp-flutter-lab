@@ -3,7 +3,7 @@ import 'package:counter_7/components/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:counter_7/model/watch_list.dart';
 import 'package:counter_7/main.dart';
-import 'package:counter_7/utils/getMyWatchList.dart';
+import 'package:counter_7/utils/get_my_watch_list.dart';
 
 class MyWatchListPage extends StatefulWidget {
   const MyWatchListPage({super.key});
@@ -36,7 +36,11 @@ class _MyWatchListPageState extends State<MyWatchListPage> {
         future: futureData,
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.data == null) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+              child: CircularProgressIndicator(
+                color: redPrimary,
+              )
+            );
           } else {
             if (!snapshot.hasData) {
               return Column(

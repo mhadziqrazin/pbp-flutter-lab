@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        progressIndicatorTheme: const ProgressIndicatorThemeData(
-          color: Colors.redAccent
-        )
+        // progressIndicatorTheme: const ProgressIndicatorThemeData(
+        //   color: Colors.redAccent
+        // )
       ),
       home: const MyHomePage(),
     );

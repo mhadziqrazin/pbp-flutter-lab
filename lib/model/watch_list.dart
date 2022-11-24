@@ -61,30 +61,3 @@ class Fields {
     "review": review,
   };
 }
-
-// enum Watched { ALREADY, HAVEN_T }
-//
-// final watchedValues = EnumValues({
-//   "Already": Watched.ALREADY,
-//   "Haven't": Watched.HAVEN_T
-// });
-
-// enum Model { MYWATCHLIST_MYWATCHLIST }
-//
-// final modelValues = EnumValues({
-//   "mywatchlist.mywatchlist": Model.MYWATCHLIST_MYWATCHLIST
-// });
-
-// class EnumValues<T> {
-//   Map<String, T> map;
-//   Map<T, String> reverseMap;
-//
-//   EnumValues(this.map);
-//
-//   Map<T, String> get reverse {
-//     if (reverseMap == null) {
-//       reverseMap = map.map((k, v) => new MapEntry(v, k));
-//     }
-//     return reverseMap;
-//   }
-// }

@@ -1,3 +1,237 @@
+# **PBP Tugas 9**
+
+## **Nama**&emsp;: Muhammad Hadziq Razin
+## **NPM** &nbsp;&emsp;: 2106707076
+## **Kelas** &emsp;: D
+
+#
+
+<br>
+
+# **📱 Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Apakah lebih baik?**
+
+**Bisa**, tetapi penyimpanan data menjadi **kurang terstruktur** dibandingkan dengan membuat model terlebih dahulu. Membuat model membuat program menjadi lebih rapi dan lebih OOP sehingga lebih intuitif dan mudah.
+<br>
+<br>
+
+
+# **📱 Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya**
+
+Sama dengan tugas 7 & 8, ditambah beberapa widget lain yakni:
+1. `Checkbox`: Membuat checkbox.
+
+2. `Flexible`: _Wrap text_ agar _responsive_.
+
+3. `CircularProgressIndicator`: Menambahkan _loading indicator_ ketika menunggu data dari Future.
+
+4. `Border`: Menambahkan _outline_ pada BoxDecoration Container.
+
+5. `FutureBuilder`: Membuat _snapshot_ dari data yang di-_fetch_ oleh _method_ Future.
+<br>
+<br>
+
+# **📱 Jelaskan mekanisme pengambilan data dari json hingga dapat ditampilkan pada Flutter**
+
+1. Menambahkan _dependency_ `http` agar bisa melakukan _method_ get(). Caranya dengan menjalankan perintah berikut.
+    ```
+    flutter pub add http
+    ```
+2. Membuat fungsi Future untuk mengambil _snapshot_ data dari _url_ yang diinginkan. Fungsi ini dibuat pada file terpisah `get_my_watch_list.dart`.
+    ```Dart
+    Future<List<WatchList>> fetchWatchList() async {
+        var url = Uri.parse('http://pbp-tugas2-hadziq.herokuapp.com/mywatchlist/json/');
+        var response = await http.get(
+            url,
+            headers: {
+            "Content-Type": "application/json",
+            },
+        );
+
+        // melakukan decode response menjadi bentuk json
+        var data = jsonDecode(utf8.decode(response.bodyBytes));
+
+        // melakukan konversi data json menjadi object WatchList
+        List<WatchList> listWatchList = [];
+        for (var d in data) {
+            if (d != null) {
+            listWatchList.add(WatchList.fromJson(d));
+            }
+        }
+
+        return listWatchList;
+    }
+    ```
+    Pertama-tama _url_ diubah menjadi Uri, kemudian di-_fetch_ dan _response_ yang didapat di-_decode_ menjadi bentuk json. Data yang sudah di-_decode_ kemudian dimasukkan ke dalam List. Selanjutnya List ditampilkan menggunakan FutureBuilder yang ada di file `my_watch_list.dart`.
+    ```Dart
+    body: FutureBuilder(
+        future: futureData,
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.data == null) {
+            return const Center(
+              ...
+            );
+          } else {
+            if (!snapshot.hasData) {
+              return Column(
+                ...
+              );
+            } else {
+              return ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (_, index)=> InkWell(
+                  onTap: () {
+                    ...
+                  },
+                  child: Container(
+                    ...
+                    ),
+                    child: Align(
+                      ...
+                      child: Row(
+                        ...
+                        children: [
+                          Flexible(
+                            child: Text(
+                              "${snapshot.data![index].fields.title}",
+                            )
+                          ),
+                          ...
+    ```
+<br>
+<br>
+
+# **📱 Cara Mengimplementasikan Langkah-Langkah Pengerjaan Tugas 9**
+
+**✅ Menambahkan drawer/hamburger menu pada app yang telah dibuat sebeumnya**
+
+Membuat file beranama `drawer.dart` kemudian menggunakannya dengan cara berikut.
+```
+return scaffold(
+    ...
+    drawer: const DrawerTugas(),
+    ...
+)
+```
+<br>
+<br>
+
+**✅  Membuat satu file dart yang berisi model mywatchlist.**
+
+Membuat file pada folder model dengan nama `watch_list.dart`. Model WatchList mempunyai atribut `pk` dan `fields`, sedangkan `fields` memiliki atribut `watched`, `title`, `rating`, `releaseDate`, `review`.
+<br>
+<br>
+
+**✅ Menambahkan halaman mywatchlist**
+
+Membuat file `my_watch_list.dart` kemudian mengisinya dengan _widget_-_widget_ yang menampilkan data yang disimpan di List yang sudah diisi fungsi Future. Contoh kode sudah ditunjukkan di atas.
+<br>
+<br>
+
+**✅ Membuat navigasi dari setiap judul watch list ke halaman detail**
+
+Menambahkan _widget_ `InkWell` untuk mendeteksi _gesture_ dari _user_.
+```Dart
+InkWell(
+    onTap: () {
+        ...
+    },
+    child: Container(
+        ...
+    )
+)
+```
+<br>
+<br>
+
+**✅ Menambahkan halaman detail untuk setiap mywatchlist**
+
+Membuat file `detail.dart`. Page `detail.dart` akan dipanggil dengan parameter `watched`, `title`, `rating`, `releaseDate`, `review` dari film yang ditekan _user_. Kemudian masing-masing parameter disimpan di suatu variabel kemudian ditampilkan menggunakan _widget_ yang dibutuhkan.
+```Dart
+onTap: () {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => MyDetailPage(
+                title: snapshot.data![index].fields.title,
+                releaseDate: snapshot.data![index].fields.releaseDate,
+                rating: snapshot.data![index].fields.rating,
+                watched: snapshot.data![index].fields.watched,
+                review: snapshot.data![index].fields.review,
+            )
+        )
+    );
+},
+```
+<br>
+<br>
+
+**✅ Menambahkan tombol untuk kembali ke daftar mywatchlist**
+Menambahkan _widget_ `TextButton` pada halaman detail.
+```Dart
+TextButton(
+    style: TextButton.styleFrom(
+        ...
+    ),
+    onPressed: () {
+        Navigator.pop(context);
+    },
+    child: const Text(
+        'Back',
+        ...
+    ),
+),
+```
+<br>
+<br>
+
+**🔱 BONUS:**<br>
+
+**✅ Menambahkan checkbox pada setiap watchlist pada halaman mywatchlist. Dimana checkbox akan tercentang jika status ditonton bernilai true dan tidak jika bernilai false**
+
+Menambahkan _widget_ `CheckBox` pada halaman MyWatchList.
+```Dart
+Checkbox(value: (snapshot.data![index].fields.watched == 'Already'),
+    activeColor: Colors.green,
+    onChanged: (bool? value) {
+        setState(() {
+            snapshot.data![index].fields.watched = (value!) ? 'Already' : "Haven't";
+        });
+    }
+),
+```
+<br>
+<br>
+
+**✅ Menambahkan warna untuk outline pada setiap mywatchlist pada halaman mywatchlist berdasarkan status ditonton (Dua warna yang dipilih bebas)**
+
+Menambahkan _widget_ Border pada BorderDecoration Container yang menampilkan daftar film.
+```Dart
+Border.all(
+    color: (snapshot.data![index].fields.watched == 'Already') ?
+        Colors.greenAccent : redPrimary,
+    width: 3.0
+),
+```
+<br>
+<br>
+
+**✅ Refactor function fetch data dari web service ke sebuah file terpisah.**
+
+Membuat folder `utils` kemudian di dalamnya membuat file `get_my_watch_list.dart` yang berisi fungsi Future yang sudah ditunjukkan di atas. Fungsi ini bisa dipanggil pada halaman MyWatchList dengan meng-_import_-nya terlebih dahulu. Fungsi dipanggil saat InitState halaman MyWatchList agar datanya bisa diubah-ubah secara lokal (tidak terus-menerus _refresh_).
+```Dart
+import 'package:counter_7/utils/get_my_watch_list.dart';
+```
+```Dart
+late Future<List<WatchList>> futureData;
+@override
+void initState() {
+    super.initState();
+    futureData = fetchWatchList();
+}
+```
+<br>
+<br>
+
 # **PBP Tugas 8**
 
 ## **Nama**&emsp;: Muhammad Hadziq Razin
