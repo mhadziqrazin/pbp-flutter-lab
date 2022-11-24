@@ -148,7 +148,6 @@ class _MyDetailPageState extends State<MyDetailPage> {
                   // review text
                   Container(
                     alignment: Alignment.centerLeft,
-                    margin: const EdgeInsets.only(left: 15),
                     child: Text(
                       widget.review,
                       style: TextStyle(

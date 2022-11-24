@@ -21,7 +21,7 @@ class _MyWatchListPageState extends State<MyWatchListPage> {
     super.initState();
     futureData = fetchWatchList();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,12 +86,14 @@ class _MyWatchListPageState extends State<MyWatchListPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            "${snapshot.data![index].fields.title}",
-                            style: const TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              color: whitePrimary,
+                          Flexible(
+                            child: Text(
+                              "${snapshot.data![index].fields.title}",
+                              style: const TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: whitePrimary,
+                              ),
                             ),
                           ),
                           Checkbox(value: (snapshot.data![index].fields.watched == 'Already'),
