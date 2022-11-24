@@ -105,7 +105,7 @@ Sama dengan tugas 7 & 8, ditambah beberapa widget lain yakni:
 **✅ Menambahkan drawer/hamburger menu pada app yang telah dibuat sebeumnya**
 
 Membuat file beranama `drawer.dart` kemudian menggunakannya dengan cara berikut.
-```
+```Dart
 return scaffold(
     ...
     drawer: const DrawerTugas(),
